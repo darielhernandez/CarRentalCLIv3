@@ -1,5 +1,8 @@
 package com.careerdevs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //2. Car class with 3 properties
 public class Car {
 
@@ -7,6 +10,7 @@ public class Car {
     private String make;
     private String model;
     private int year;//clarify between integer and int.-- Integer is a wrapper class. It can store references to int
+    private String plate;
 
 
     //3. constructor- used to create (car) objects from the (car)"blueprint" that is the (Car)class.
@@ -15,16 +19,17 @@ public class Car {
         this.make = make;
         this.model = model;
         this.year = year;
+        this.plate= plate;
     }
 
     //4. getters and setters// used to more securely access data. Allows you to be able to access private objects.
 
     public String getMake(){
         return make;
-}
+    }
     public void setMake(String make){
         this.make=make;
-}
+    }
     public String getModel(){
         return model;
     }
@@ -37,5 +42,25 @@ public class Car {
     public void setYear(int year){
         this.year=year;
     }
+    public String getPlate(){
+        return plate;
+    }
+    public void setPlate(String plate){
+        this.plate=plate;
+    }
+
+    //5.create an @Override .toString() method that will print out readable details about our Car object
+    @Override
+    public String toString() {
+        return "Car{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", plate='" + plate + '\'' +
+                '}';
+    }
+
 }
+
+
 
