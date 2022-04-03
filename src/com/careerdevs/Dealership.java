@@ -5,25 +5,24 @@ import java.util.List;
 
 public class Dealership {
     // 6. Dealership class
-    public class dealership {
-        private String javaMotors;
+        private String dealershipName;
         private List<Car> availableCars;
         private List<Car> soldCars;
 
         // 7. constructor for dealership class-- this constructor is a bit different than a traditional constructor.
-        public dealership(String javaMotors) {
-            this.javaMotors = javaMotors;
+        public Dealership(String dealershipName) {
+            this.dealershipName = dealershipName;
             this.availableCars = new ArrayList<>();
             this.soldCars = new ArrayList<>();
         }
 
         //8. create getters and setters for this class
-        public String getJavaMotors() {
-            return javaMotors;
+        public String getDealershipName() {
+            return dealershipName;
         }
 
-        public void setJavaMotors(String javaMotors) {
-            this.javaMotors = javaMotors;
+        public void setDealershipName(String dealershipName) {
+            this.dealershipName = dealershipName;
         }
 
         public List<Car> getAvailableCars() {
@@ -44,6 +43,37 @@ public class Dealership {
         //9. array vs arraylist- array has a fixed length that must be specified when created and cannot be changed. Arraylist has a variable length that changes dynamically to accommodate the amount of data entered.
 //        buyCar(String license)
 
+    //11. create method to buy car
+ public void buyCar(String license){
+    if (availableCars.size()==0){
+        System.out.println("Sorry, no cars available");
+        return;
+    }
+            //11a. for loop to loop through available cars
+     for(int i=0; i<availableCars.size(); i++){
+         if (license.equals(availableCars.get(i).getPlate())){
+             System.out.println("You've selected " + availableCars.get(i));
+             soldCars.add(availableCars.get(i));
+             availableCars.remove(availableCars.get(i));
+             return;
+         }
+     }
 
+}
+public void returnCar(String license){
+    if (soldCars.size()==0){
+        System.out.println("Sorry, no cars available");
+        return;
+    }
+    //12.allow user to return car
+    for(int i=0; i<soldCars.size(); i++){
+        if(license.equals(soldCars.get(i).getPlate())){
+            System.out.println("You've chosen to return " + soldCars.get(i) + " please walk into traffic");
+            availableCars.add(soldCars.get(i));
+            soldCars.remove(availableCars.get(i));
+            return;
+        }
     }
 }
+    }
+
