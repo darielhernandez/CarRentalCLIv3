@@ -68,7 +68,7 @@ public void returnCar(String license){
     //12.allow user to return car
     for(int i=0; i<soldCars.size(); i++){
         if(license.equals(soldCars.get(i).getPlate())){
-            System.out.println("You've chosen to return " + soldCars.get(i) + " please walk into traffic");
+            System.out.println("You've chosen to return " + soldCars.get(i) + " please walk into traffic :)");
             availableCars.add(soldCars.get(i));
             soldCars.remove(availableCars.get(i));
             return;

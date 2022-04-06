@@ -11,9 +11,9 @@ public class Main {
     //10. initialize scanner to be able to read user input
 
         //3. create 3 instances of cars inside of main class
-        Car car1 = new Car("Nissan", "Altima", 2021, "1AA111");
-        Car car2 = new Car("Honda","Accord",2021, "1AA112");
-        Car car3 = new Car("Toyota", "Camry", 2021, "1AA113");
+        Car car1 = new Car("Nissan", "Altima", 2021, "1A");
+        Car car2 = new Car("Honda","Accord",2021, "2B");
+        Car car3 = new Car("Toyota", "Camry", 2021, "3C");
 
         //8. create new dealership instance and give it a name
         Dealership dealership= new Dealership("Java Motors");
@@ -22,14 +22,44 @@ public class Main {
         dealership.getAvailableCars().add(car2);
         dealership.getAvailableCars().add(car3);
 
-        System.out.println("Please select a vehicle");
-        for (int i=0; i<dealership.getAvailableCars().size(); i++){
-            System.out.println(dealership.getAvailableCars().get(i));
-        }
-        System.out.println("Please select plate number");
+        //BONUS MATERIAL--
+        System.out.println("Hello! Welcome to " + dealership.getDealershipName());
+        //create a while loop
+        while (true){
+            System.out.println("Would you like to 1) Buy a car 2) Return a car 3) Leave the dealership");
+            int res= scanner.nextInt();
+            scanner.nextLine();//need this to move you down to the next line. otherwise coursur stays at previous line
+            if(res ==3) {
+                System.out.println("You are now leaving the dealership...");
+                break;
+            }else if(res==2){
+                //return car logic here
+                System.out.println("Which car would you like to return? Please input the License plate");
+                for (int i=0; i<dealership.getSoldCars().size(); i++){
+                    System.out.println(dealership.getSoldCars().get(i));
+                }
+                    String userinput = scanner.nextLine();// expects license plate input from user
+                    dealership.buyCar(userinput);
+                    System.out.println(dealership.getAvailableCars());
+                    System.out.println(dealership.getSoldCars());
 
-        String userinput= scanner.nextLine();
-        dealership.buyCar(userinput);
+            }else if (res==1) {
+                //buy car logic here
+                System.out.println("Please select plate number");
+                for (int i = 0; i < dealership.getAvailableCars().size(); i++) {
+                    System.out.println(dealership.getAvailableCars().get(i));
+                }
+                String userinput = scanner.nextLine();// expects license plate input from user
+                dealership.buyCar(userinput);
+                System.out.println(dealership.getAvailableCars());
+                System.out.println(dealership.getSoldCars());
+            }else{
+                    System.out.println("Invalid input! Please select an option from the menu");
+                }
+            }
+        }
     }
 
-}
+
+
+
