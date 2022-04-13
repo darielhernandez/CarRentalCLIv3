@@ -15,24 +15,19 @@ public class Dealership {
             this.availableCars = new ArrayList<>();
             this.soldCars = new ArrayList<>();
         }
-
         //8. create getters and setters for this class
         public String getDealershipName() {
             return dealershipName;
         }
-
         public void setDealershipName(String dealershipName) {
             this.dealershipName = dealershipName;
         }
-
         public List<Car> getAvailableCars() {
             return availableCars;
         }
-
         public void setAvailableCars(List<Car> availableCars) {
             this.availableCars = availableCars;
         }
-
         public List<Car> getSoldCars() {
             return soldCars;
         }
@@ -44,10 +39,12 @@ public class Dealership {
 //        buyCar(String license)
 
     //11. create method to buy car
- public void buyCar(String license){
+ public boolean buyCar(String license){
+            //boolean= true/false
+            //will return true if user input is valid license, false if invalid license.
     if (availableCars.size()==0){
         System.out.println("Sorry, no cars available");
-        return;
+        return true; //return true to take them back to
     }
             //11a. for loop to loop through available cars
      for(int i=0; i<availableCars.size(); i++){
@@ -55,15 +52,16 @@ public class Dealership {
              System.out.println("You've selected " + availableCars.get(i));
              soldCars.add(availableCars.get(i));
              availableCars.remove(availableCars.get(i));
-             return;
+             return true;//ends function
          }
      }
-
+     System.out.println("Invalid input. No cars available with that license plate");
+     return false;
 }
-public void returnCar(String license){
+public boolean returnCar(String license){
     if (soldCars.size()==0){
         System.out.println("Sorry, no cars available");
-        return;
+        return true;
     }
     //12.allow user to return car
     for(int i=0; i<soldCars.size(); i++){
@@ -71,9 +69,11 @@ public void returnCar(String license){
             System.out.println("You've chosen to return " + soldCars.get(i) + " please walk into traffic :)");
             availableCars.add(soldCars.get(i));
             soldCars.remove(availableCars.get(i));
-            return;
+            return true;
         }
     }
+    System.out.println("Invalid input. No cars available with that license plate");
+    return false;
 }
     }
 

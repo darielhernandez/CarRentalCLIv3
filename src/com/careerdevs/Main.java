@@ -27,32 +27,46 @@ public class Main {
         //create a while loop
         while (true){
             System.out.println("Would you like to 1) Buy a car 2) Return a car 3) Leave the dealership");
-            int res= scanner.nextInt();
-            scanner.nextLine();//need this to move you down to the next line. otherwise coursur stays at previous line
+            int res=0;
+            //in this while loop, we are creating a try/catch method-- explain to me what that is.
+            try{ //we have code that is prone to throw an exception
+                res= scanner.nextInt();
+                scanner.nextLine();//need this to move you down to the next line. otherwise courser stays at previous line
+
+            }catch (Exception e){
+                System.out.println("Invalid input, please select an option from the menu");
+                scanner.nextLine();
+            }
             if(res ==3) {
                 System.out.println("You are now leaving the dealership...");
                 break;
             }else if(res==2){
                 //return car logic here
+                while (true){
                 System.out.println("Which car would you like to return? Please input the License plate");
                 for (int i=0; i<dealership.getSoldCars().size(); i++){
                     System.out.println(dealership.getSoldCars().get(i));
                 }
                     String userinput = scanner.nextLine();// expects license plate input from user
-                    dealership.buyCar(userinput);
+                   boolean isValidInput= dealership.buyCar(userinput);
                     System.out.println(dealership.getAvailableCars());
                     System.out.println(dealership.getSoldCars());
-
-            }else if (res==1) {
-                //buy car logic here
-                System.out.println("Please select plate number");
-                for (int i = 0; i < dealership.getAvailableCars().size(); i++) {
-                    System.out.println(dealership.getAvailableCars().get(i));
                 }
-                String userinput = scanner.nextLine();// expects license plate input from user
-                dealership.buyCar(userinput);
-                System.out.println(dealership.getAvailableCars());
-                System.out.println(dealership.getSoldCars());
+            }else if (res==1) {
+                while (true){
+                    System.out.println("Please select plate number");
+                    for (int i = 0; i < dealership.getAvailableCars().size(); i++) {
+                        System.out.println(dealership.getAvailableCars().get(i));
+                    }
+                    String userinput = scanner.nextLine();// expects license plate input from user
+                    boolean isValidInput= dealership.buyCar(userinput);//returns a boolean
+                    System.out.println(dealership.getAvailableCars());
+                    System.out.println(dealership.getSoldCars());
+                    if (isValidInput){
+                        break;
+                        }
+                    }
+                //buy car logic here
             }else{
                     System.out.println("Invalid input! Please select an option from the menu");
                 }
